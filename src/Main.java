@@ -1,17 +1,12 @@
+import java.io.IOException;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int x = getRandomNumberInRange(-10, 10);
-        if (x > 0) {
-            System.out.println(Math.pow(x, 2));
-        }else {
-            throw new ArithmeticException();
-        }
         try {
-            getRandomNumberInRange(-10, 10);
-        } catch (ArithmeticException e) {
-            System.out.println("Отловили!");
+            test(getRandomNumberInRange(-5, 5));
+        } catch (IOException e) {
+            System.out.println("OTLOVILI");
         }
     }
     /**
@@ -20,8 +15,18 @@ public class Main {
      * @return - возвращаем рандомное число между минимальной и максимальной переменной
      */
     private static int getRandomNumberInRange(int min, int max) {
-        Random r = new Random();
-        int rand = r.nextInt((max - min) + 1) + min;
-        return rand;
+        return new Random().nextInt((max - min) + 1) + min;
+    }
+
+    /**
+     * Exp!!!
+     * @param x
+     */
+    private static void test(int x) throws IOException {
+        if (x > 0) {
+            System.out.println(x*x);
+        }else {
+            throw new IOException();
+        }
     }
 }
